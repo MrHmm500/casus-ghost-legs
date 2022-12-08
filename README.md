@@ -2,13 +2,13 @@
 casus ghost legs  
 Ghost Legs is a kind of lottery game common in Asia. It starts with a number of vertical lines. Between the lines there are random horizontal connectors binding all lines into a connected diagram, like the one below.  
 
-A  B  C  
-|  |  |  
-|--|  |  
-|  |--|  
-|  |--|  
-|  |  |  
-1  2  3  
+A&nbsp;&nbsp;B&nbsp;&nbsp;C  
+|&nbsp;&nbsp;|&nbsp;&nbsp;|  
+|--|&nbsp;&nbsp;|  
+|&nbsp;&nbsp;|--|  
+|&nbsp;&nbsp;|--|  
+|&nbsp;&nbsp;|&nbsp;&nbsp;|  
+1&nbsp;&nbsp;2&nbsp;&nbsp;3  
   
   
 To play the game, a player chooses a line in the top and follow it downwards. When a horizontal connector is encountered, he must follow the connector to turn to another vertical line and continue downwards. Repeat this until reaching the bottom of the diagram.  
