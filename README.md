@@ -16,4 +16,5 @@ To play the game, a player chooses a line in the top and follow it downwards. Wh
 In the example diagram, when you start from A, you will end up in 2. Starting from B will end up in 1. Starting from C will end up in 3. It is guaranteed that every top label will map to a unique bottom label.  
   
 Given a Ghost Legs diagram, find out which top label is connected to which bottom label. List all connected pairs.  
-  
+
+To run this: php -S localhost:8080 -t [folder name]
