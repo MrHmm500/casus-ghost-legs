@@ -1,7 +1,7 @@
 <?php
 $jsonTestCases = file_get_contents('testcases.json');
 $testCases = json_decode($jsonTestCases);
-foreach($testCases as $caseName => $caseData) {
+foreach ($testCases as $caseName => $caseData) {
     echo "-----------------------------------<br />";
     echo $caseName . ' wordt getest<br />';
     echo 'expected output: <br />';
@@ -15,21 +15,12 @@ foreach($testCases as $caseName => $caseData) {
     extractOutputFromInput($input);
 }
 
-function extractOutputFromInput($lines)
+function extractOutputFromInput(array $lines): void
 {
-    $bottomPositions = explode('  ', $lines[count($lines) - 1]);
-    unset($lines[count($lines) - 1]);
     $headerPositions = explode('  ', array_shift($lines));
+    $bottomPositions = explode('  ', array_pop($lines));
 
-    $crosses = [];
-    foreach ($lines as $index => $line) {
-        $crosses[$index] = [];
-        foreach (explode('|', $line) as $index2 => $posline) {
-            if ($posline == '--') {
-                $crosses[$index][] = $index2 - 1;
-            }
-        }
-    }
+    $crosses = extractCrosses($lines);
 
     $answer = [];
     foreach ($headerPositions as $line => $headerPosition) {
@@ -41,9 +32,12 @@ function extractOutputFromInput($lines)
                 $currentLine--;
                 continue;
             }
-            if (count($crosses[$i]) > 0 && in_array($currentLine, $crosses[$i])) {
-                $currentLine++;
+
+            if (count($crosses[$i]) == 0 || !in_array($currentLine, $crosses[$i])) {
+                continue;
             }
+
+            $currentLine++;
         }
 
         $answer[$line] .= $bottomPositions[$currentLine];
@@ -51,4 +45,18 @@ function extractOutputFromInput($lines)
     foreach ($answer as $ans) {
         echo("$ans<br />");
     }
+}
+
+function extractCrosses(array $lines): array
+{
+    $crosses = [];
+    foreach ($lines as $index => $line) {
+        $crosses[$index] = [];
+        foreach (explode('|', $line) as $index2 => $posLine) {
+            if ($posLine == '--') {
+                $crosses[$index][] = $index2 - 1;
+            }
+        }
+    }
+    return $crosses;
 }
